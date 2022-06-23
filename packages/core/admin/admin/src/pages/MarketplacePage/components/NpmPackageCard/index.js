@@ -27,7 +27,7 @@ const EllipsisText = styled(Typography)`
 
 const NpmPackageCard = ({
   npmPackage,
-  installedPackageNames,
+  isInstalled,
   useYarn,
   isInDevelopmentMode,
   npmPackageType,
@@ -35,8 +35,6 @@ const NpmPackageCard = ({
   const { attributes } = npmPackage;
   const { formatMessage } = useIntl();
   const { trackUsage } = useTracking();
-
-  const isInstalled = installedPackageNames.includes(attributes.npmPackageName);
 
   const commandToCopy = useYarn
     ? `yarn add ${attributes.npmPackageName}`
@@ -167,7 +165,7 @@ NpmPackageCard.propTypes = {
       strapiCompatibility: PropTypes.oneOf(['v3', 'v4']),
     }).isRequired,
   }).isRequired,
-  installedPackageNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isInstalled: PropTypes.bool.isRequired,
   useYarn: PropTypes.bool.isRequired,
   isInDevelopmentMode: PropTypes.bool,
   npmPackageType: PropTypes.string.isRequired,
