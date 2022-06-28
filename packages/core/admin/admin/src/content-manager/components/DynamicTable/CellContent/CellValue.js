@@ -15,6 +15,10 @@ const CellValue = ({ type, value }) => {
   if (type === 'datetime') {
     formattedValue = formatDate(value, { dateStyle: 'full', timeStyle: 'short' });
   }
+  
+  if (type === 'timestamp') {
+    formattedValue = formatDate(new Date(parseInt(value)), { dateStyle: 'full', timeStyle: 'medium' });
+  }
 
   if (type === 'time') {
     const [hour, minute, second] = value.split(':');
